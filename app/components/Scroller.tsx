@@ -4,6 +4,7 @@ import { IAppState, IPlayer } from "../interfaces";
 import { View, Text, Modal, Image, TouchableHighlight } from "react-native";
 import { Button } from "react-native-elements";
 import images from "../media/images/images";
+import { getPlayers } from "../actions/playerActions";
 
 export const Scroller = () => {
   const [modal, setModal] = useState(false);
@@ -49,6 +50,26 @@ export const Scroller = () => {
     setScore(score);
     setModal(!modal);
   };
+
+  //to get the "next" players from the database on "next page" click
+  const nextPage = () => {
+    setSkip(skip + limit);
+  };
+
+  //to get the "previous" players from the database on "previous page" click
+  const previousPage = () => {
+    skip === 0 ? setSkip(0) : setSkip(skip - limit);
+  };
+
+  //get players every time query, skip or limit changes
+  const isFirstRun = useRef(true);
+  useEffect(() => {
+    if (isFirstRun.current) {
+      isFirstRun.current = false;
+      return;
+    }
+    getPlayers(query, pos, nat, clu, ag, scor, dispatch, limit, skip);
+  }, [query, dispatch, skip, limit]);
 
   const imgSrc = images[name];
 
@@ -105,6 +126,26 @@ export const Scroller = () => {
           </View>
         </Modal>
       </View>
+      {!isFirstRun.current && (
+        <View>
+          <Button
+            // id={skip === 0 ? "disable" : ""}
+            // className="prevnext"
+            // color="primary"
+            // disabled={skip === 0 ? true : false}
+            onPress={previousPage}
+            title="Previous page"
+          ></Button>
+          <Button
+            // id={players.players.length < 5 ? "disable" : ""}
+            // className="prevnext"
+            // color="primary"
+            onPress={nextPage}
+            title="Next Page"
+            // disabled={players.players.length < 5 ? true : false}
+          ></Button>
+        </View>
+      )}
     </View>
   );
 };
