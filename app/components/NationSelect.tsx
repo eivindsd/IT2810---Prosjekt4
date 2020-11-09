@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { ScrollView, Alert } from "react-native";
 import { ListItem, Button } from "react-native-elements";
+import { useDispatch, useSelector } from "react-redux";
+import { setNation } from "../actions/nationActions";
+import { IAppState } from "../interfaces";
 
 export const NationSelect = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const optionNation = [
     { value: "", label: "All nations" },
@@ -46,22 +50,24 @@ export const NationSelect = () => {
     { value: "Wales", label: "Wales" },
   ];
 
-  const handleClick = () => {
-    Alert.alert("Halla");
+  const handleClick = (nat: string) => {
+    dispatch(setNation(nat));
   };
 
   const toggle = () => {
     setIsOpen(!isOpen);
   };
 
+  const nation = useSelector((state: IAppState) => state.nation);
+
   if (isOpen) {
     return (
       <ScrollView>
-        <Button title="Nation" onPress={toggle} />
+        <Button title={"Nation: " + nation} onPress={toggle} />
         {optionNation.map((l, i) => (
           <ListItem key={i}>
             <ListItem.Content>
-              <Button title={l.label} onPress={handleClick} />
+              <Button title={l.label} onPress={() => handleClick(l.value)} />
             </ListItem.Content>
           </ListItem>
         ))}
@@ -70,7 +76,7 @@ export const NationSelect = () => {
   } else {
     return (
       <ScrollView>
-        <Button title="Nation" onPress={toggle} />
+        <Button title={"Nation: " + nation} onPress={toggle} />
       </ScrollView>
     );
   }

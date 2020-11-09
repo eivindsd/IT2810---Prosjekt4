@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { View, StyleSheet, ScrollView } from "react-native";
 import { SearchBar, Text, Button } from "react-native-elements";
 import { Filter } from "./Filter";
-import { type } from "os";
 import { getPlayers } from "../actions/playerActions";
 import { IAppState } from "../interfaces";
 import { useSelector, useDispatch } from "react-redux";

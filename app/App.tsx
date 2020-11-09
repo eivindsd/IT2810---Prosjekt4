@@ -1,9 +1,10 @@
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { Search } from "./components/SearchBar";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import { Scroller } from "./components/Scroller";
 
 export default function App() {
   return (
@@ -12,6 +13,9 @@ export default function App() {
         <Search />
         <StatusBar style="auto" />
       </View>
+      <ScrollView>
+        <Scroller />
+      </ScrollView>
     </Provider>
   );
 }

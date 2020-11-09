@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { ScrollView, Alert } from "react-native";
 import { ListItem, Button } from "react-native-elements";
+import { useDispatch, useSelector } from "react-redux";
+import { setPosition } from "../actions/positionActions";
+import { IAppState } from "../interfaces";
 
 export const PositionSelect = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const optionPosition = [
     { value: "", label: "All positions" },
@@ -22,22 +26,25 @@ export const PositionSelect = () => {
     { value: "ST", label: "Striker" },
   ];
 
-  const handleClick = () => {
-    Alert.alert("Hei");
+  const handleClick = (pos: string) => {
+    console.log(pos);
+    dispatch(setPosition(pos));
   };
 
   const toggle = () => {
     setIsOpen(!isOpen);
   };
 
+  const position = useSelector((state: IAppState) => state.position);
+
   if (isOpen) {
     return (
       <ScrollView>
-        <Button title="Positions" onPress={toggle} />
+        <Button title={"Positions: " + position} onPress={toggle} />
         {optionPosition.map((l, i) => (
           <ListItem key={i}>
             <ListItem.Content>
-              <Button title={l.label} onPress={handleClick} />
+              <Button title={l.label} onPress={() => handleClick(l.value)} />
             </ListItem.Content>
           </ListItem>
         ))}
@@ -46,7 +53,7 @@ export const PositionSelect = () => {
   } else {
     return (
       <ScrollView>
-        <Button title="Positions" onPress={toggle} />
+        <Button title={"Positions: " + position} onPress={toggle} />
       </ScrollView>
     );
   }

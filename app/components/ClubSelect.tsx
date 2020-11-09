@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { ScrollView, Alert } from "react-native";
 import { ListItem, Button } from "react-native-elements";
+import { useDispatch, useSelector } from "react-redux";
+import { setClub } from "../actions/clubActions";
+import { IAppState } from "../interfaces";
 
 export const ClubSelect = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const optionClub = [
     { value: "", label: "All clubs" },
@@ -33,22 +37,24 @@ export const ClubSelect = () => {
     { value: "Villareal", label: "Villareal" },
   ];
 
-  const handleClick = () => {
-    Alert.alert("Hallo");
+  const handleClick = (clu: string) => {
+    dispatch(setClub(clu));
   };
 
   const toggle = () => {
     setIsOpen(!isOpen);
   };
 
+  const club = useSelector((state: IAppState) => state.club);
+
   if (isOpen) {
     return (
       <ScrollView>
-        <Button title="Club" onPress={toggle} />
+        <Button title={"Club: " + club} onPress={toggle} />
         {optionClub.map((l, i) => (
           <ListItem key={i}>
             <ListItem.Content>
-              <Button title={l.label} onPress={handleClick} />
+              <Button title={l.label} onPress={() => handleClick(l.value)} />
             </ListItem.Content>
           </ListItem>
         ))}
@@ -57,7 +63,7 @@ export const ClubSelect = () => {
   } else {
     return (
       <ScrollView>
-        <Button title="Club" onPress={toggle} />
+        <Button title={"Club: " + club} onPress={toggle} />
       </ScrollView>
     );
   }
