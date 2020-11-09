@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IAppState, IPlayer } from "../interfaces";
-import { View, Text, Modal, Image, TouchableHighlight } from "react-native";
+import { View, Text, Modal, Image, TouchableHighlight, TextStyle, StyleSheet, ViewStyle, ImageStyle } from "react-native";
 import { Button } from "react-native-elements";
 import images from "../media/images/images";
 import { getPlayers } from "../actions/playerActions";
+import axios from "axios";
 
 export const Scroller = () => {
   const [modal, setModal] = useState(false);
@@ -51,6 +52,15 @@ export const Scroller = () => {
     setModal(!modal);
   };
 
+  //update the score on buttonclick
+  const changeScore = (inputScore: number) => {
+    let updatedScore = score + inputScore;
+    setScore(updatedScore);
+    axios.put("http://it2810-77.idi.ntnu.no:3000/api/players/" + id, { score: updatedScore }).then((res) => {
+      console.log("PLAYERS", res);
+    });
+  };
+
   //to get the "next" players from the database on "next page" click
   const nextPage = () => {
     setSkip(skip + limit);
@@ -95,31 +105,36 @@ export const Scroller = () => {
           ></Button>
         </View>
       ))}
-      <View>
+      <View style={styles.centeredView}>
         <Modal visible={modal} animationType="slide">
           {/* <Button onPress={() => changeScore(1)}>Upvote</Button>
         <Button onPress={() => changeScore(-1)}>Downvote</Button> */}
-          <View style={{ marginLeft: 150, marginTop: 300 }}>
-            <View>
-              <Text> Age: {age} </Text>
-
-              <Text>Position: {position} </Text>
-
-              <Text>Club: {club}</Text>
-
-              <Text> Nation: {nation}</Text>
-
-              <Text>Rating: {rating}</Text>
-
-              <Text> Score: {score}</Text>
+          <View style={styles.centeredView}>
+            <View style={styles.modalView}>
+              <Text style={styles.modalText}>{name}</Text>
+              <Text style={styles.textStyle}>Age: {age} </Text>
+              <Text style={styles.textStyle}>Position: {position} </Text>
+              <Text style={styles.textStyle}>Club: {club}</Text>
+              <Text style={styles.textStyle}>Nation: {nation}</Text>
+              <Text style={styles.textStyle}>Rating: {rating}</Text>
+              <Text style={styles.textStyle}>Score: {score}</Text>
 
               <Image
-                style={{ width: 150, height: 150 }}
+                style={styles.imageStyle}
                 source={{
                   uri: imgSrc,
                 }}
               />
-              <TouchableHighlight onPress={() => setModal(!modal)}>
+
+              <TouchableHighlight style={{...styles.openButton, backgroundColor: "green"}} onPress={() => changeScore(1)}>
+                <Text>Upvote</Text>
+              </TouchableHighlight>
+
+              <TouchableHighlight style={{...styles.openButton, backgroundColor: "red"}} onPress={() => changeScore(-1)}>
+                <Text>Downvote</Text>
+              </TouchableHighlight>
+
+              <TouchableHighlight style={{...styles.openButton, backgroundColor: "#2196F3"}} onPress={() => setModal(!modal)}>
                 <Text> Hide modal </Text>
               </TouchableHighlight>
             </View>
@@ -149,3 +164,60 @@ export const Scroller = () => {
     </View>
   );
 };
+
+interface Styles {
+  centeredView: ViewStyle
+  modalView: ViewStyle
+  openButton: ViewStyle
+  imageStyle: ImageStyle
+  textStyle: TextStyle
+  modalText: TextStyle
+}
+
+const styles = StyleSheet.create<Styles>({
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
+  },
+  openButton: {
+    backgroundColor: "#F194FF",
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2
+  },
+  textStyle: {
+    color: "black",
+    textAlign: "left",
+    marginBottom: 10,
+    fontSize: 15
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 20
+  },
+  imageStyle: {
+     width: 250, 
+     height: 250, 
+     marginTop: 30,
+     marginBottom: 5,
+     overflow: 'visible'
+  }
+})
