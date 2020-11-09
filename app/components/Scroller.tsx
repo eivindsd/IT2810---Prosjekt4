@@ -88,6 +88,7 @@ export const Scroller = () => {
       {players.players.map(({ ...players }: IPlayer) => (
         <View>
           <Button
+            style={styles.buttonStyle}
             key={players.name}
             onPress={() =>
               toggle(
@@ -107,8 +108,6 @@ export const Scroller = () => {
       ))}
       <View style={styles.centeredView}>
         <Modal visible={modal} animationType="slide">
-          {/* <Button onPress={() => changeScore(1)}>Upvote</Button>
-        <Button onPress={() => changeScore(-1)}>Downvote</Button> */}
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>{name}</Text>
@@ -135,7 +134,7 @@ export const Scroller = () => {
               </TouchableHighlight>
 
               <TouchableHighlight style={{...styles.openButton, backgroundColor: "#2196F3"}} onPress={() => setModal(!modal)}>
-                <Text> Hide modal </Text>
+                <Text>Hide </Text>
               </TouchableHighlight>
             </View>
           </View>
@@ -144,20 +143,16 @@ export const Scroller = () => {
       {!isFirstRun.current && (
         <View>
           <Button
-            // id={skip === 0 ? "disable" : ""}
-            // className="prevnext"
-            // color="primary"
-            // disabled={skip === 0 ? true : false}
+            style={styles.buttonStyle}
+            disabled={skip === 0 ? true : false}
             onPress={previousPage}
             title="Previous page"
           ></Button>
           <Button
-            // id={players.players.length < 5 ? "disable" : ""}
-            // className="prevnext"
-            // color="primary"
+            style={styles.buttonStyle}
             onPress={nextPage}
             title="Next Page"
-            // disabled={players.players.length < 5 ? true : false}
+            disabled={players.players.length < 5 ? true : false}
           ></Button>
         </View>
       )}
@@ -172,13 +167,15 @@ interface Styles {
   imageStyle: ImageStyle
   textStyle: TextStyle
   modalText: TextStyle
+  buttonStyle: ViewStyle
 }
 
 const styles = StyleSheet.create<Styles>({
   centeredView: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
+    marginBottom: 25
   },
   modalView: {
     margin: 20,
@@ -199,7 +196,9 @@ const styles = StyleSheet.create<Styles>({
     backgroundColor: "#F194FF",
     borderRadius: 20,
     padding: 10,
-    elevation: 2
+    elevation: 2,
+    width: 90,
+    alignItems: 'center'
   },
   textStyle: {
     color: "black",
@@ -219,5 +218,9 @@ const styles = StyleSheet.create<Styles>({
      marginTop: 30,
      marginBottom: 5,
      overflow: 'visible'
+  },
+  buttonStyle: {
+    marginLeft: '10%', 
+    marginRight: '10%'
   }
 })

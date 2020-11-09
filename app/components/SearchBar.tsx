@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, ScrollView } from "react-native";
+import { View, StyleSheet, ScrollView, TextStyle, ViewStyle } from "react-native";
 import { SearchBar, Text, Button } from "react-native-elements";
 import { Filter } from "./Filter";
 import { getPlayers } from "../actions/playerActions";
@@ -32,7 +32,7 @@ export const Search = () => {
         placeholder="Search for FUT-players"
         value={name}
         onChangeText={handleChange}
-        style={styles.searchbar}
+        style={styles.searchBar}
       />
       <Filter />
       <Button
@@ -46,7 +46,14 @@ export const Search = () => {
   );
 };
 
-const styles = StyleSheet.create({
+interface Styles {
+  header: TextStyle,
+  searchBar: ViewStyle,
+  filter: ViewStyle,
+  button: ViewStyle 
+}
+
+const styles = StyleSheet.create<Styles>({
   header: {
     fontSize: 60,
     fontStyle: "italic",
@@ -55,7 +62,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: 100,
   },
-  searchbar: {
+  searchBar: {
     flex: 1,
   },
   filter: {
