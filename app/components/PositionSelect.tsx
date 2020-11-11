@@ -29,6 +29,7 @@ export const PositionSelect = () => {
   const handleClick = (pos: string) => {
     console.log(pos);
     dispatch(setPosition(pos));
+    setIsOpen(!isOpen);
   };
 
   const toggle = () => {

@@ -13,9 +13,7 @@ export default function App() {
         <Search />
         <StatusBar style="auto" />
       </View>
-      <ScrollView>
-        <Scroller />
-      </ScrollView>
+      <Scroller />
     </Provider>
   );
 }

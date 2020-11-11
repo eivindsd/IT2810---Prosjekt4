@@ -14,13 +14,11 @@ export const getPlayers = (
   skip: number
 ) => {
   dispatch(setPlayersLoading());
-  console.log("getPlayers" + query + position + "hei");
   axios
     .get(
       `http://it2810-77.idi.ntnu.no:3000/api/players?playerName=${query}&position=${position}&nation=${nation}&club=${club}&limit=${limit}&skip=${skip}&age=${age}&score=${score}`
     )
     .then((res) => {
-      console.log("PLAYERS", res);
       dispatch({
         type: GET_PLAYERS,
         payload: res.data,

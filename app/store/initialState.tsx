@@ -12,6 +12,7 @@ const initialState: IAppState = {
   club: "",
   age: 0,
   score: 0,
+  pmodal: false,
 };
 
 export default initialState;

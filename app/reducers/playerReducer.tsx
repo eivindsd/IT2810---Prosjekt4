@@ -6,6 +6,7 @@ import {
   SET_CLUB,
   SET_AGE,
   GET_SCORE,
+  SET_MODAL,
 } from "../actions/types";
 import { IAppState, IAction } from "../interfaces";
 import initialState from "../store/initialState";
@@ -19,6 +20,7 @@ export default function playerReducer(
 ) {
   switch (action.type) {
     case GET_PLAYERS:
+      console.log("hei");
       return {
         ...state,
         players: {
@@ -60,6 +62,11 @@ export default function playerReducer(
       return {
         ...state,
         score: action.payload,
+      };
+    case SET_MODAL:
+      return {
+        ...state,
+        pmodal: action.payload,
       };
     default:
       return state;

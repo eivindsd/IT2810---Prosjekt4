@@ -39,6 +39,7 @@ export const ClubSelect = () => {
 
   const handleClick = (clu: string) => {
     dispatch(setClub(clu));
+    setIsOpen(!isOpen);
   };
 
   const toggle = () => {

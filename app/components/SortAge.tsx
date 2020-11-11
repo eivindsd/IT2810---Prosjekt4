@@ -13,6 +13,7 @@ export const SortAge = () => {
   const handleClick = (value: string) => {
     setValue(value);
     dispatch(setAge(Number(value)));
+    setIsOpen(!isOpen);
   };
 
   const toggle = () => {
@@ -44,6 +45,6 @@ export const SortAge = () => {
       </View>
     );
   } else {
-    return <Button title={"Sort Age: "} onPress={toggle} />;
+    return <Button title={"Sort Age: " + sortings[value]} onPress={toggle} />;
   }
 };

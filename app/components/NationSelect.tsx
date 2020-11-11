@@ -52,6 +52,7 @@ export const NationSelect = () => {
 
   const handleClick = (nat: string) => {
     dispatch(setNation(nat));
+    setIsOpen(!isOpen);
   };
 
   const toggle = () => {
