@@ -45,6 +45,7 @@ export interface IAppState {
   club: string;
   age: number;
   score: number;
+  pmodal: boolean;
 }
 
 export interface IPositionState {

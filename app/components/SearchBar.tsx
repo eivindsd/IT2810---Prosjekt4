@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { View, StyleSheet, ScrollView, TextStyle, ViewStyle } from "react-native";
+import {
+  View,
+  StyleSheet,
+  ScrollView,
+  TextStyle,
+  ViewStyle,
+} from "react-native";
 import { SearchBar, Text, Button } from "react-native-elements";
 import { Filter } from "./Filter";
 import { getPlayers } from "../actions/playerActions";
 import { IAppState } from "../interfaces";
 import { useSelector, useDispatch } from "react-redux";
+import { setModal } from "../actions/modalActions";
 
 export const Search = () => {
   const [name, setName] = useState("");
@@ -20,10 +27,13 @@ export const Search = () => {
   const ag = useSelector((state: IAppState) => state.age);
   const scor = useSelector((state: IAppState) => state.score);
 
-  const handleSubmit = () => {
-    console.log("Hei");
+  const handleSubmit = (show: boolean) => {
     getPlayers(name, pos, nat, clu, ag, scor, dispatch, 10, 0);
+    dispatch(setModal(show));
+    console.log(pmodal);
   };
+
+  const pmodal = useSelector((state: IAppState) => state.pmodal);
 
   return (
     <ScrollView>
@@ -36,21 +46,23 @@ export const Search = () => {
       />
       <Filter />
       <Button
+        buttonStyle={{ borderRadius: 0 }}
         style={styles.button}
         title="SEARCH"
-        onPress={handleSubmit}
+        onPress={() => handleSubmit(true)}
         type="solid"
       />
+
       {console.log(name)}
     </ScrollView>
   );
 };
 
 interface Styles {
-  header: TextStyle,
-  searchBar: ViewStyle,
-  filter: ViewStyle,
-  button: ViewStyle 
+  header: TextStyle;
+  searchBar: ViewStyle;
+  filter: ViewStyle;
+  button: ViewStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -60,7 +72,8 @@ const styles = StyleSheet.create<Styles>({
     color: "#940000",
     textAlign: "center",
     flex: 1,
-    marginTop: 100,
+    marginTop: 150,
+    marginBottom: 20,
   },
   searchBar: {
     flex: 1,
@@ -70,5 +83,6 @@ const styles = StyleSheet.create<Styles>({
   },
   button: {
     flex: 1,
+    marginTop: 10,
   },
 });

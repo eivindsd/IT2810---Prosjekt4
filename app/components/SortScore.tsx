@@ -14,6 +14,7 @@ export const SortScore = () => {
   const handleClick = (value: string) => {
     setValue(value);
     dispatch(getScore(Number(value)));
+    setIsOpen(!isOpen);
   };
 
   const toggle = () => {
@@ -45,6 +46,6 @@ export const SortScore = () => {
       </View>
     );
   } else {
-    return <Button title={"Sort Score: "} onPress={toggle} />;
+    return <Button title={"Sort Score: " + sortings[value]} onPress={toggle} />;
   }
 };

@@ -1,14 +1,26 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { IAppState, IPlayer } from "../interfaces";
-import { View, Text, Modal, Image, TouchableHighlight, TextStyle, StyleSheet, ViewStyle, ImageStyle } from "react-native";
+import {
+  View,
+  Text,
+  Modal,
+  Image,
+  ImageBackground,
+  TouchableHighlight,
+  TextStyle,
+  StyleSheet,
+  ViewStyle,
+  ImageStyle,
+} from "react-native";
 import { Button } from "react-native-elements";
 import images from "../media/images/images";
 import { getPlayers } from "../actions/playerActions";
 import axios from "axios";
+import { setModal } from "../actions/modalActions";
 
 export const Scroller = () => {
-  const [modal, setModal] = useState(false);
+  const [modal, setCardModal] = useState(false);
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [position, setPosition] = useState("");
@@ -41,6 +53,7 @@ export const Scroller = () => {
     id: string,
     score: number
   ) => {
+    console.log(pmodal);
     setName(playername);
     setAge(playerage);
     setPosition(playerposition);
@@ -49,16 +62,20 @@ export const Scroller = () => {
     setRating(rating);
     setId(id);
     setScore(score);
-    setModal(!modal);
+    setCardModal(true);
   };
 
   //update the score on buttonclick
   const changeScore = (inputScore: number) => {
     let updatedScore = score + inputScore;
     setScore(updatedScore);
-    axios.put("http://it2810-77.idi.ntnu.no:3000/api/players/" + id, { score: updatedScore }).then((res) => {
-      console.log("PLAYERS", res);
-    });
+    axios
+      .put("http://it2810-77.idi.ntnu.no:3000/api/players/" + id, {
+        score: updatedScore,
+      })
+      .then((res) => {
+        console.log("PLAYERS", res);
+      });
   };
 
   //to get the "next" players from the database on "next page" click
@@ -83,101 +100,149 @@ export const Scroller = () => {
 
   const imgSrc = images[name];
 
+  const pmodal = useSelector((state: IAppState) => state.pmodal);
+
   return (
     <View>
-      {players.players.map(({ ...players }: IPlayer) => (
-        <View>
-          <Button
-            style={styles.buttonStyle}
-            key={players.name}
-            onPress={() =>
-              toggle(
-                players.name,
-                players.age,
-                players.position,
-                players.nation,
-                players.club,
-                players.rating,
-                players.id,
-                players.score
-              )
-            }
-            title={players.name}
-          ></Button>
-        </View>
-      ))}
-      <View style={styles.centeredView}>
-        <Modal visible={modal} animationType="slide">
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.modalText}>{name}</Text>
-              <Text style={styles.textStyle}>Age: {age} </Text>
-              <Text style={styles.textStyle}>Position: {position} </Text>
-              <Text style={styles.textStyle}>Club: {club}</Text>
-              <Text style={styles.textStyle}>Nation: {nation}</Text>
-              <Text style={styles.textStyle}>Rating: {rating}</Text>
-              <Text style={styles.textStyle}>Score: {score}</Text>
-
-              <Image
-                style={styles.imageStyle}
-                source={{
-                  uri: imgSrc,
-                }}
-              />
-
-              <TouchableHighlight style={{...styles.openButton, backgroundColor: "green"}} onPress={() => changeScore(1)}>
-                <Text>Upvote</Text>
-              </TouchableHighlight>
-
-              <TouchableHighlight style={{...styles.openButton, backgroundColor: "red"}} onPress={() => changeScore(-1)}>
-                <Text>Downvote</Text>
-              </TouchableHighlight>
-
-              <TouchableHighlight style={{...styles.openButton, backgroundColor: "#2196F3"}} onPress={() => setModal(!modal)}>
-                <Text>Hide </Text>
-              </TouchableHighlight>
-            </View>
+      <Modal visible={pmodal} animationType="slide">
+        <ImageBackground
+          style={styles.backgroundImage}
+          source={{
+            uri:
+              "https://i.pinimg.com/originals/19/1b/6d/191b6d669f008bfaf3950dd3e71ec2ca.jpg",
+          }}
+        >
+          <TouchableHighlight
+            style={{ ...styles.closeButton, backgroundColor: "#2196F3" }}
+            onPress={() => dispatch(setModal(false))}
+          >
+            <Text style={styles.buttonText}> X </Text>
+          </TouchableHighlight>
+          <View style={styles.scrollerStyle}>
+            {players.players.map(({ ...players }: IPlayer) => (
+              <View>
+                <Button
+                  buttonStyle={{
+                    backgroundColor: "#336699",
+                    borderRadius: 15,
+                    marginBottom: 15,
+                  }}
+                  key={players.name}
+                  onPress={() =>
+                    toggle(
+                      players.name,
+                      players.age,
+                      players.position,
+                      players.nation,
+                      players.club,
+                      players.rating,
+                      players.id,
+                      players.score
+                    )
+                  }
+                  title={players.name + " " + players.rating}
+                ></Button>
+              </View>
+            ))}
           </View>
-        </Modal>
-      </View>
-      {!isFirstRun.current && (
-        <View>
-          <Button
-            style={styles.buttonStyle}
-            disabled={skip === 0 ? true : false}
-            onPress={previousPage}
-            title="Previous page"
-          ></Button>
-          <Button
-            style={styles.buttonStyle}
-            onPress={nextPage}
-            title="Next Page"
-            disabled={players.players.length < 5 ? true : false}
-          ></Button>
-        </View>
-      )}
+
+          <View style={styles.centeredView}>
+            <Modal visible={modal} animationType="slide">
+              {/* <Button onPress={() => changeScore(1)}>Upvote</Button>
+        <Button onPress={() => changeScore(-1)}>Downvote</Button> */}
+              <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                  <Text style={styles.modalText}>{name}</Text>
+                  <Text style={styles.textStyle}>Age: {age} </Text>
+                  <Text style={styles.textStyle}>Position: {position} </Text>
+                  <Text style={styles.textStyle}>Club: {club}</Text>
+                  <Text style={styles.textStyle}>Nation: {nation}</Text>
+                  <Text style={styles.textStyle}>Rating: {rating}</Text>
+                  <Text style={styles.textStyle}>Score: {score}</Text>
+
+                  <Image
+                    style={styles.imageStyle}
+                    source={{
+                      uri: imgSrc,
+                    }}
+                  />
+
+                  <TouchableHighlight
+                    style={{ ...styles.openButton, backgroundColor: "green" }}
+                    onPress={() => changeScore(1)}
+                  >
+                    <Text style={styles.modalButtonText}>Upvote</Text>
+                  </TouchableHighlight>
+
+                  <TouchableHighlight
+                    style={{ ...styles.openButton, backgroundColor: "red" }}
+                    onPress={() => changeScore(-1)}
+                  >
+                    <Text style={styles.modalButtonText}>Downvote</Text>
+                  </TouchableHighlight>
+
+                  <TouchableHighlight
+                    style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
+                    onPress={() => setCardModal(!modal)}
+                  >
+                    <Text style={styles.modalButtonText}> Hide modal </Text>
+                  </TouchableHighlight>
+                </View>
+              </View>
+            </Modal>
+          </View>
+          {!isFirstRun.current && (
+            <View style={styles.button}>
+              <Button
+                // id={skip === 0 ? "disable" : ""}
+                // className="prevnext"
+                // color="primary"
+                style={styles.skipButton}
+                disabled={skip === 0 ? true : false}
+                onPress={previousPage}
+                title="Previous page"
+              ></Button>
+              <Button
+                // id={players.players.length < 5 ? "disable" : ""}
+                // className="prevnext"
+                // color="primary"
+                style={styles.skipButton}
+                onPress={nextPage}
+                title="Next Page"
+                disabled={players.players.length < 5 ? true : false}
+              ></Button>
+            </View>
+          )}
+        </ImageBackground>
+      </Modal>
     </View>
   );
 };
 
 interface Styles {
-  centeredView: ViewStyle
-  modalView: ViewStyle
-  openButton: ViewStyle
-  imageStyle: ImageStyle
-  textStyle: TextStyle
-  modalText: TextStyle
-  buttonStyle: ViewStyle
+  centeredView: ViewStyle;
+  modalView: ViewStyle;
+  openButton: ViewStyle;
+  imageStyle: ImageStyle;
+  textStyle: TextStyle;
+  modalText: TextStyle;
+  playerStyle: ViewStyle;
+  backgroundImage: ImageStyle;
+  button: ViewStyle;
+  closeButton: ViewStyle;
+  buttonText: TextStyle;
+  modalButtonText: TextStyle;
+  skipButton: ViewStyle;
+  scrollerStyle: ViewStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
   centeredView: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: 25
   },
   modalView: {
+    marginTop: 100,
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
@@ -186,41 +251,77 @@ const styles = StyleSheet.create<Styles>({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
-    elevation: 5
+    elevation: 5,
   },
   openButton: {
     backgroundColor: "#F194FF",
     borderRadius: 20,
     padding: 10,
     elevation: 2,
-    width: 90,
-    alignItems: 'center'
+    width: 100,
+    marginTop: 5,
+  },
+  closeButton: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    justifyContent: "center",
+    marginLeft: "88 %",
+    marginTop: "0%",
+    marginBottom: 90,
+  },
+  modalButtonText: {
+    textAlign: "center",
+  },
+  buttonText: {
+    fontSize: 20,
+    textAlign: "center",
+    fontWeight: "bold",
+    marginLeft: -5,
   },
   textStyle: {
     color: "black",
     textAlign: "left",
     marginBottom: 10,
-    fontSize: 15
+    fontSize: 15,
   },
   modalText: {
     marginBottom: 15,
     textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 20
+    fontSize: 20,
   },
   imageStyle: {
-     width: 250, 
-     height: 250, 
-     marginTop: 30,
-     marginBottom: 5,
-     overflow: 'visible'
+    width: 250,
+    height: 250,
+    marginTop: 30,
+    marginBottom: 5,
+    overflow: "visible",
   },
-  buttonStyle: {
-    marginLeft: '10%', 
-    marginRight: '10%'
-  }
-})
+
+  playerStyle: {
+    marginTop: 15,
+    backgroundColor: "#336699",
+  },
+
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover",
+    justifyContent: "center",
+  },
+  button: {
+    flexDirection: "row",
+    width: "100%",
+  },
+  skipButton: {
+    width: 150,
+    marginLeft: 35,
+  },
+
+  scrollerStyle: {
+    height: "70%",
+  },
+});
