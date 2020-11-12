@@ -53,7 +53,6 @@ export const Scroller = () => {
     id: string,
     score: number
   ) => {
-    console.log(pmodal);
     setName(playername);
     setAge(playerage);
     setPosition(playerposition);
@@ -73,9 +72,7 @@ export const Scroller = () => {
       .put("http://it2810-77.idi.ntnu.no:3000/api/players/" + id, {
         score: updatedScore,
       })
-      .then((res) => {
-        console.log("PLAYERS", res);
-      });
+      .then((res) => {});
   };
 
   //to get the "next" players from the database on "next page" click
@@ -102,6 +99,11 @@ export const Scroller = () => {
 
   const pmodal = useSelector((state: IAppState) => state.pmodal);
 
+  const exit = () => {
+    dispatch(setModal(false));
+    setSkip(0);
+  };
+
   return (
     <View>
       <Modal visible={pmodal} animationType="slide">
@@ -114,13 +116,13 @@ export const Scroller = () => {
         >
           <TouchableHighlight
             style={{ ...styles.closeButton, backgroundColor: "#2196F3" }}
-            onPress={() => dispatch(setModal(false))}
+            onPress={() => exit()}
           >
             <Text style={styles.buttonText}> X </Text>
           </TouchableHighlight>
           <View style={styles.scrollerStyle}>
-            {players.players.map(({ ...players }: IPlayer) => (
-              <View>
+            {players.players.map(({ ...players }: IPlayer, i: number) => (
+              <View key={i}>
                 <Button
                   buttonStyle={{
                     backgroundColor: "#336699",
@@ -148,47 +150,58 @@ export const Scroller = () => {
 
           <View style={styles.centeredView}>
             <Modal visible={modal} animationType="slide">
-              {/* <Button onPress={() => changeScore(1)}>Upvote</Button>
+              <ImageBackground
+                style={styles.backgroundImage}
+                source={{
+                  uri:
+                    "https://i.pinimg.com/originals/19/1b/6d/191b6d669f008bfaf3950dd3e71ec2ca.jpg",
+                }}
+              >
+                {/* <Button onPress={() => changeScore(1)}>Upvote</Button>
         <Button onPress={() => changeScore(-1)}>Downvote</Button> */}
-              <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                  <Text style={styles.modalText}>{name}</Text>
-                  <Text style={styles.textStyle}>Age: {age} </Text>
-                  <Text style={styles.textStyle}>Position: {position} </Text>
-                  <Text style={styles.textStyle}>Club: {club}</Text>
-                  <Text style={styles.textStyle}>Nation: {nation}</Text>
-                  <Text style={styles.textStyle}>Rating: {rating}</Text>
-                  <Text style={styles.textStyle}>Score: {score}</Text>
+                <View style={styles.centeredView}>
+                  <View style={styles.modalView}>
+                    <Text style={styles.modalText}>{name}</Text>
+                    <Text style={styles.textStyle}>Age: {age} </Text>
+                    <Text style={styles.textStyle}>Position: {position} </Text>
+                    <Text style={styles.textStyle}>Club: {club}</Text>
+                    <Text style={styles.textStyle}>Nation: {nation}</Text>
+                    <Text style={styles.textStyle}>Rating: {rating}</Text>
+                    <Text style={styles.textStyle}>Score: {score}</Text>
 
-                  <Image
-                    style={styles.imageStyle}
-                    source={{
-                      uri: imgSrc,
-                    }}
-                  />
+                    <Image
+                      style={styles.imageStyle}
+                      source={{
+                        uri: imgSrc,
+                      }}
+                    />
 
-                  <TouchableHighlight
-                    style={{ ...styles.openButton, backgroundColor: "green" }}
-                    onPress={() => changeScore(1)}
-                  >
-                    <Text style={styles.modalButtonText}>Upvote</Text>
-                  </TouchableHighlight>
+                    <TouchableHighlight
+                      style={{ ...styles.openButton, backgroundColor: "green" }}
+                      onPress={() => changeScore(1)}
+                    >
+                      <Text style={styles.modalButtonText}>Upvote</Text>
+                    </TouchableHighlight>
 
-                  <TouchableHighlight
-                    style={{ ...styles.openButton, backgroundColor: "red" }}
-                    onPress={() => changeScore(-1)}
-                  >
-                    <Text style={styles.modalButtonText}>Downvote</Text>
-                  </TouchableHighlight>
+                    <TouchableHighlight
+                      style={{ ...styles.openButton, backgroundColor: "red" }}
+                      onPress={() => changeScore(-1)}
+                    >
+                      <Text style={styles.modalButtonText}>Downvote</Text>
+                    </TouchableHighlight>
 
-                  <TouchableHighlight
-                    style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-                    onPress={() => setCardModal(!modal)}
-                  >
-                    <Text style={styles.modalButtonText}> Hide modal </Text>
-                  </TouchableHighlight>
+                    <TouchableHighlight
+                      style={{
+                        ...styles.openButton,
+                        backgroundColor: "#2196F3",
+                      }}
+                      onPress={() => setCardModal(!modal)}
+                    >
+                      <Text style={styles.modalButtonText}> Hide modal </Text>
+                    </TouchableHighlight>
+                  </View>
                 </View>
-              </View>
+              </ImageBackground>
             </Modal>
           </View>
           {!isFirstRun.current && (
@@ -242,7 +255,6 @@ const styles = StyleSheet.create<Styles>({
     alignItems: "center",
   },
   modalView: {
-    marginTop: 100,
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,

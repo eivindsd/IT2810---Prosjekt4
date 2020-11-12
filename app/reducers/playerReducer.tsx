@@ -20,7 +20,6 @@ export default function playerReducer(
 ) {
   switch (action.type) {
     case GET_PLAYERS:
-      console.log("hei");
       return {
         ...state,
         players: {

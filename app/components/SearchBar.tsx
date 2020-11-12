@@ -30,20 +30,21 @@ export const Search = () => {
   const handleSubmit = (show: boolean) => {
     getPlayers(name, pos, nat, clu, ag, scor, dispatch, 10, 0);
     dispatch(setModal(show));
-    console.log(pmodal);
   };
 
   const pmodal = useSelector((state: IAppState) => state.pmodal);
 
   return (
-    <ScrollView>
+    <View>
       <Text style={styles.header}> FutHeader</Text>
-      <SearchBar
-        placeholder="Search for FUT-players"
-        value={name}
-        onChangeText={handleChange}
-        style={styles.searchBar}
-      />
+      <View>
+        <SearchBar
+          placeholder="Search for FUT-players"
+          value={name}
+          onChangeText={handleChange}
+        />
+      </View>
+
       <Filter />
       <Button
         buttonStyle={{ borderRadius: 0 }}
@@ -52,17 +53,14 @@ export const Search = () => {
         onPress={() => handleSubmit(true)}
         type="solid"
       />
-
-      {console.log(name)}
-    </ScrollView>
+    </View>
   );
 };
 
 interface Styles {
   header: TextStyle;
-  searchBar: ViewStyle;
-  filter: ViewStyle;
   button: ViewStyle;
+  page: ViewStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -71,18 +69,14 @@ const styles = StyleSheet.create<Styles>({
     fontStyle: "italic",
     color: "#940000",
     textAlign: "center",
-    flex: 1,
-    marginTop: 150,
-    marginBottom: 20,
+    marginTop: "50%",
+    marginBottom: "5%",
   },
-  searchBar: {
-    flex: 1,
-  },
-  filter: {
-    flex: 7,
-  },
+
   button: {
-    flex: 1,
     marginTop: 10,
+  },
+  page: {
+    height: "100%",
   },
 });

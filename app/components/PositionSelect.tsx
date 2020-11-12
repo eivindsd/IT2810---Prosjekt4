@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, Alert } from "react-native";
+import { View, ScrollView, StyleSheet } from "react-native";
 import { ListItem, Button } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosition } from "../actions/positionActions";
@@ -27,7 +27,6 @@ export const PositionSelect = () => {
   ];
 
   const handleClick = (pos: string) => {
-    console.log(pos);
     dispatch(setPosition(pos));
     setIsOpen(!isOpen);
   };
@@ -53,9 +52,15 @@ export const PositionSelect = () => {
     );
   } else {
     return (
-      <ScrollView>
+      <View>
         <Button title={"Positions: " + position} onPress={toggle} />
-      </ScrollView>
+      </View>
     );
   }
 };
+
+const styles = StyleSheet.create({
+  button: {
+    marginBottom: "10%",
+  },
+});

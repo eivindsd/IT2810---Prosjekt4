@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, Alert } from "react-native";
+import { View, ScrollView, StyleSheet } from "react-native";
 import { ListItem, Button } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import { setNation } from "../actions/nationActions";
@@ -63,7 +63,7 @@ export const NationSelect = () => {
 
   if (isOpen) {
     return (
-      <ScrollView>
+      <ScrollView style={styles.button}>
         <Button title={"Nation: " + nation} onPress={toggle} />
         {optionNation.map((l, i) => (
           <ListItem key={i}>
@@ -76,9 +76,15 @@ export const NationSelect = () => {
     );
   } else {
     return (
-      <ScrollView>
+      <View>
         <Button title={"Nation: " + nation} onPress={toggle} />
-      </ScrollView>
+      </View>
     );
   }
 };
+
+const styles = StyleSheet.create({
+  button: {
+    padding: 0,
+  },
+});

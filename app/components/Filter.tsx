@@ -35,5 +35,6 @@ interface Styles {
 const styles = StyleSheet.create<Styles>({
   button: {
     marginTop: 10,
+    flex: 0,
   },
 });

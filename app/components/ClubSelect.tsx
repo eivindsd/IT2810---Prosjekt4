@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ScrollView, Alert } from "react-native";
+import { View, Alert, ScrollView } from "react-native";
 import { ListItem, Button } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import { setClub } from "../actions/clubActions";
@@ -63,9 +63,9 @@ export const ClubSelect = () => {
     );
   } else {
     return (
-      <ScrollView>
+      <View>
         <Button title={"Club: " + club} onPress={toggle} />
-      </ScrollView>
+      </View>
     );
   }
 };
