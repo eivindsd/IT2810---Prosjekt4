@@ -16,16 +16,19 @@ export const Search = () => {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
 
+  //set local state name to whatever the user is typing in the searchbar
   const handleChange = (name: string) => {
     setName(name);
   };
 
+  //get global state variables
   const pos = useSelector((state: IAppState) => state.position);
   const nat = useSelector((state: IAppState) => state.nation);
   const clu = useSelector((state: IAppState) => state.club);
   const ag = useSelector((state: IAppState) => state.age);
   const scor = useSelector((state: IAppState) => state.score);
 
+  //on submit, get players from database, and show modal with results
   const handleSubmit = (show: boolean) => {
     getPlayers(name, pos, nat, clu, ag, scor, dispatch, 9, 0);
     dispatch(setModal(show));
@@ -57,6 +60,7 @@ export const Search = () => {
   );
 };
 
+//interfaces to specify styles for the searchbar 
 interface Styles {
   header: TextStyle;
   button: ViewStyle;
@@ -64,6 +68,7 @@ interface Styles {
   filter: ViewStyle;
 }
 
+//stylesheet for the different react native elements in Searchbar
 const styles = StyleSheet.create<Styles>({
   header: {
     fontSize: 50,

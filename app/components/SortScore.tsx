@@ -6,13 +6,13 @@ import DropDownPicker from "react-native-dropdown-picker";
 
 export const SortScore = () => {
   const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
 
+  //sets score (to -1, 0 or 1) to specify sort
   const handleClick = (value: string) => {
     dispatch(getScore(Number(value)));
-    setIsOpen(!isOpen);
   };
 
+  //Used DropDownPicker to choose sorting on score
   return (
     <View>
       <DropDownPicker

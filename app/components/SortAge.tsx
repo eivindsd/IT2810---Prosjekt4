@@ -6,14 +6,13 @@ import DropDownPicker from "react-native-dropdown-picker";
 
 export const SortAge = () => {
   const dispatch = useDispatch();
-  const [isOpen, setIsOpen] = useState(false);
 
+  //sets age (to -1, 0 or 1) to specify sort 
   const handleClick = (value: string) => {
-    //setValue(value);
     dispatch(setAge(Number(value)));
-    setIsOpen(!isOpen);
   };
 
+  //Used DropDownPicker to choose sorting on age
   return (
     <View>
       <DropDownPicker

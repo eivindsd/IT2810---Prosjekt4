@@ -6,6 +6,8 @@ import { ClubSelect } from "./ClubSelect";
 import { SortAge } from "./SortAge";
 import { SortScore } from "./SortScore";
 
+//mostly styling for the different selectors, and used zIndex to control which 
+//selectors that should be placed over the others
 export const Filter = () => {
   return (
     <View>
