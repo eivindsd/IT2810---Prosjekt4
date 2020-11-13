@@ -41,7 +41,7 @@ export const Scroller = () => {
   const scor = useSelector((state: IAppState) => state.score);
   const query = useSelector((state: IAppState) => state.query);
 
-  const limit = 10;
+  const limit = 9;
 
   const toggle = (
     playername: string,
@@ -128,6 +128,8 @@ export const Scroller = () => {
                     backgroundColor: "#336699",
                     borderRadius: 15,
                     marginBottom: 15,
+                    width: "80%",
+                    marginLeft: "10%",
                   }}
                   key={players.name}
                   onPress={() =>
@@ -197,7 +199,7 @@ export const Scroller = () => {
                       }}
                       onPress={() => setCardModal(!modal)}
                     >
-                      <Text style={styles.modalButtonText}> Hide modal </Text>
+                      <Text style={styles.modalButtonText}> Exit </Text>
                     </TouchableHighlight>
                   </View>
                 </View>
@@ -214,6 +216,10 @@ export const Scroller = () => {
                 disabled={skip === 0 ? true : false}
                 onPress={previousPage}
                 title="Previous page"
+                buttonStyle={{
+                  width: 150,
+                  marginLeft: "18%",
+                }}
               ></Button>
               <Button
                 // id={players.players.length < 5 ? "disable" : ""}
@@ -223,6 +229,7 @@ export const Scroller = () => {
                 onPress={nextPage}
                 title="Next Page"
                 disabled={players.players.length < 5 ? true : false}
+                buttonStyle={{ width: 150 }}
               ></Button>
             </View>
           )}
@@ -239,7 +246,6 @@ interface Styles {
   imageStyle: ImageStyle;
   textStyle: TextStyle;
   modalText: TextStyle;
-  playerStyle: ViewStyle;
   backgroundImage: ImageStyle;
   button: ViewStyle;
   closeButton: ViewStyle;
@@ -253,6 +259,7 @@ const styles = StyleSheet.create<Styles>({
   centeredView: {
     justifyContent: "center",
     alignItems: "center",
+    margin: "5%",
   },
   modalView: {
     margin: 20,
@@ -283,8 +290,7 @@ const styles = StyleSheet.create<Styles>({
     borderRadius: 20,
     justifyContent: "center",
     marginLeft: "88 %",
-    marginTop: "0%",
-    marginBottom: 90,
+    marginBottom: "10%",
   },
   modalButtonText: {
     textAlign: "center",
@@ -314,11 +320,6 @@ const styles = StyleSheet.create<Styles>({
     overflow: "visible",
   },
 
-  playerStyle: {
-    marginTop: 15,
-    backgroundColor: "#336699",
-  },
-
   backgroundImage: {
     flex: 1,
     resizeMode: "cover",
@@ -326,11 +327,10 @@ const styles = StyleSheet.create<Styles>({
   },
   button: {
     flexDirection: "row",
-    width: "100%",
+    width: "80%",
   },
   skipButton: {
-    width: 150,
-    marginLeft: 35,
+    width: "100%",
   },
 
   scrollerStyle: {

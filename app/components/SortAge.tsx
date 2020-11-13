@@ -36,7 +36,7 @@ export const SortAge = () => {
         ]}
         labelStyle={{ color: "black", textAlign: "center" }}
         selectedLabelStyle={{ color: "white" }}
-        placeholder="Select club"
+        placeholder="Sort age"
         placeholderStyle={{ color: "white" }}
         arrowColor="white"
         defaultValue={""}

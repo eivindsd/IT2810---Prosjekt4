@@ -58,7 +58,7 @@ export const PositionSelect = () => {
       ]}
       labelStyle={{ color: "black", textAlign: "center" }}
       selectedLabelStyle={{ color: "white" }}
-      placeholder="Select club"
+      placeholder="Select position"
       placeholderStyle={{ color: "white" }}
       arrowColor="white"
       defaultValue={""}

@@ -38,7 +38,7 @@ export const SortScore = () => {
         ]}
         labelStyle={{ color: "black", textAlign: "center" }}
         selectedLabelStyle={{ color: "white" }}
-        placeholder="Select club"
+        placeholder="Sort score"
         placeholderStyle={{ color: "white" }}
         arrowColor="white"
         defaultValue={""}

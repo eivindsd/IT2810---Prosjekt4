@@ -28,7 +28,7 @@ export const Search = () => {
   const scor = useSelector((state: IAppState) => state.score);
 
   const handleSubmit = (show: boolean) => {
-    getPlayers(name, pos, nat, clu, ag, scor, dispatch, 10, 0);
+    getPlayers(name, pos, nat, clu, ag, scor, dispatch, 9, 0);
     dispatch(setModal(show));
   };
 
@@ -37,7 +37,7 @@ export const Search = () => {
   return (
     <View>
       <Text style={styles.header}> FutHeader</Text>
-      <View style={{ marginBottom: "10%" }}>
+      <View style={{ marginBottom: "5%" }}>
         <SearchBar
           placeholder="Search for FUT-players"
           value={name}
@@ -78,12 +78,12 @@ const styles = StyleSheet.create<Styles>({
   },
 
   button: {
-    marginTop: '30%',
+    marginTop: "0%",
   },
   page: {
     height: "100%",
   },
   filter: {
-    marginBottom: '30%',
+    marginBottom: "38%",
   },
 });
