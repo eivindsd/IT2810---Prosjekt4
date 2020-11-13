@@ -43,7 +43,7 @@ Følgende bilder viser siden før noe søk er gjennomført (1), det første resu
 
 
 
-## Krav til teknologi
+## Krav til teknologi og testing
 
 ### React Native
 Applikasjonen er implementert ved bruk av React Native og TypeScript. Vi har valgt å gjenbruke store deler av koden fra Prosjekt 3, noe som gjorde det enkelt 
