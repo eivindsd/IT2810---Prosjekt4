@@ -31,7 +31,17 @@ Etter å ha gjennomført et søk (med resultater), vil spillerobjektene som tilf
 I tillegg er hvert spillerobjekt representert som en knapp. Ved å trykke på en spiller, vil man få opp et pop-up vindu med mer informasjon om den valgte spilleren. 
 Her har man også muligheten til å upvote/downvote spillere, og denne scoren vil oppdateres i databasen. 
 
-Følgende bilder viser siden før noe søk er gjennomført, det første resultatsettet og pop-up-en som vises når man klikker på en spiller:
+Følgende bilder viser siden før noe søk er gjennomført (1), det første resultatsettet (2) og pop-up-en som vises når man klikker på en spiller (3):
+
+
+<div align="center">
+    <img src="app/images/search.png" align="center" height="200">
+    <img src="app/images/scroller.png" align="center" height="200">
+    <img src="app/images/modal.png" align="center" height="200">
+</div>
+
+
+
 
 ## Krav til teknologi
 
