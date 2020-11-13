@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { setAge } from "../actions/ageActions";
-import { View} from "react-native";
+import { View } from "react-native";
 import DropDownPicker from "react-native-dropdown-picker";
 
 export const SortAge = () => {
@@ -10,7 +10,7 @@ export const SortAge = () => {
   const [value, setValue] = React.useState("0");
 
   const handleClick = (value: string) => {
-    setValue(value);
+    //setValue(value);
     dispatch(setAge(Number(value)));
     setIsOpen(!isOpen);
   };
