@@ -46,6 +46,7 @@ Scroller.tsx inneholder all funksjonalitet for å vise resultatsettet.
 Her ligger altså funksjonalitet for å vise spillerne, vise mer info om hver enkelt og bla mellom ulike sider i resultatsettet. 
 
 **React-Native Komponenter**
+<br>
 I dette prosjektet måtte vi endre en del på komponentene våre i forhold til prosjekt-4. De største endringene er at alle div-komponenter til 
 View-komponenter og alt som er tekst måtte inn i Text-komponenter. 
 
@@ -60,6 +61,7 @@ i tillegg til "X"-knappen for å returnere til søk-siden. TouchableHighlight bl
 Brukte også SearchBar fra "react-native-elements" for søkefunksjonalitet.
 
 **Styling**
+<br>
 Her kunne vi ikke lenger bruke CSS for styling av komponentene. Vi laget derfor ulike stylesheets for hver komponent og et eget interface for hvert av 
 disse stylesheetsene. Har også brukt noe av de innebygde styling propsene til noen av komponentene, som f.eks buttonStyle på noen knapper og labelStyle
 på labelen til DropDownPicker-komponentene.
