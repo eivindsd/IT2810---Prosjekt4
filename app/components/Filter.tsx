@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ViewStyle, StyleSheet, Platform } from "react-native";
+import { View, Platform } from "react-native";
 import { PositionSelect } from "./PositionSelect";
 import { NationSelect } from "./NationSelect";
 import { ClubSelect } from "./ClubSelect";
@@ -58,15 +58,3 @@ export const Filter = () => {
     </View>
   );
 };
-
-// interface Styles {
-//   button: ViewStyle;
-// }
-
-// const styles = StyleSheet.create<Styles>({
-//   button: {
-//     marginTop: 10,
-//     flex: 0,
-//     zIndex: 10000,
-//   },
-// });

@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import { View, ScrollView, StyleSheet } from "react-native";
-import { ListItem, Button } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosition } from "../actions/positionActions";
 import { IAppState } from "../interfaces";
@@ -36,8 +34,6 @@ export const PositionSelect = () => {
     setIsOpen(!isOpen);
   };
 
-  const position = useSelector((state: IAppState) => state.position);
-
   return (
     <DropDownPicker
       items={[
@@ -72,31 +68,3 @@ export const PositionSelect = () => {
     />
   );
 };
-
-//   if (isOpen) {
-//     return (
-//       <ScrollView>
-//         <Button title={"Positions: " + position} onPress={toggle} />
-//         {optionPosition.map((l, i) => (
-//           <ListItem key={i}>
-//             <ListItem.Content>
-//               <Button title={l.label} onPress={() => handleClick(l.value)} />
-//             </ListItem.Content>
-//           </ListItem>
-//         ))}
-//       </ScrollView>
-//     );
-//   } else {
-//     return (
-//       <View>
-//         <Button title={"Positions: " + position} onPress={toggle} />
-//       </View>
-//     );
-//   }
-// };
-
-// const styles = StyleSheet.create({
-//   button: {
-//     marginBottom: "10%",
-//   },
-// });

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import {
   View,
-  ScrollView,
   StyleSheet,
   TextStyle,
   ViewStyle,
 } from "react-native";
-import { ListItem, Button } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import { setNation } from "../actions/nationActions";
 import { IAppState } from "../interfaces";
@@ -60,10 +58,6 @@ export const NationSelect = () => {
   const handleClick = (nat: string) => {
     console.log(nat);
     dispatch(setNation(nat));
-    setIsOpen(!isOpen);
-  };
-
-  const toggle = () => {
     setIsOpen(!isOpen);
   };
 
@@ -128,27 +122,6 @@ export const NationSelect = () => {
       />
     </View>
   );
-
-  // if (isOpen) {
-  //   return (
-  //     <ScrollView style={styles.button}>
-  //       <Button title={"Nation: " + nation} onPress={toggle} />
-  //       {optionNation.map((l, i) => (
-  //         <ListItem key={i}>
-  //           <ListItem.Content>
-  //             <Button title={l.label} onPress={() => handleClick(l.value)} />
-  //           </ListItem.Content>
-  //         </ListItem>
-  //       ))}
-  //     </ScrollView>
-  //   );
-  // } else {
-  //   return (
-  //     <View>
-  //       <Button title={"Nation: " + nation} onPress={toggle} />
-  //     </View>
-  //   );
-  // }
 };
 
 interface Styles {

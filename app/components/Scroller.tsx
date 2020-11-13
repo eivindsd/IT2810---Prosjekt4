@@ -209,9 +209,6 @@ export const Scroller = () => {
           {!isFirstRun.current && (
             <View style={styles.button}>
               <Button
-                // id={skip === 0 ? "disable" : ""}
-                // className="prevnext"
-                // color="primary"
                 style={styles.skipButton}
                 disabled={skip === 0 ? true : false}
                 onPress={previousPage}
@@ -222,9 +219,6 @@ export const Scroller = () => {
                 }}
               ></Button>
               <Button
-                // id={players.players.length < 5 ? "disable" : ""}
-                // className="prevnext"
-                // color="primary"
                 style={styles.skipButton}
                 onPress={nextPage}
                 title="Next Page"

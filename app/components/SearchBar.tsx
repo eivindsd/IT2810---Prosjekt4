@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import {
   View,
   StyleSheet,
-  ScrollView,
   TextStyle,
   ViewStyle,
 } from "react-native";
@@ -31,8 +30,6 @@ export const Search = () => {
     getPlayers(name, pos, nat, clu, ag, scor, dispatch, 9, 0);
     dispatch(setModal(show));
   };
-
-  const pmodal = useSelector((state: IAppState) => state.pmodal);
 
   return (
     <View>
