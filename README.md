@@ -1,8 +1,9 @@
 **For å kjøre prosjektet etter kloning:** <br>
-Kjør `npm install expo-cli --global` for å laste ned expo-cli (dersom du ikke allerede har det installert). <br> 
-`cd app` <br>
-Kjør `npm install` i app-mappen. <br>
-Kjør `npm start` i app-mappen for å starte applikasjonen.
+* Kjør `npm install expo-cli --global` for å laste ned expo-cli (dersom du ikke allerede har det installert). <br> 
+* `cd app` <br>
+* Kjør `npm install` i app-mappen. <br>
+* Kjør `npm start` i app-mappen for å starte applikasjonen.
+
 
 
 # Prosjekt 4 - Gruppe 77
