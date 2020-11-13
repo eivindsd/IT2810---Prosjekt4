@@ -52,15 +52,3 @@ export const Filter = () => {
     </View>
   );
 };
-
-// interface Styles {
-//   button: ViewStyle;
-// }
-
-// const styles = StyleSheet.create<Styles>({
-//   button: {
-//     marginTop: 10,
-//     flex: 0,
-//     zIndex: 10000,
-//   },
-// });
