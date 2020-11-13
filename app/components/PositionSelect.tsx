@@ -4,6 +4,7 @@ import { ListItem, Button } from "react-native-elements";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosition } from "../actions/positionActions";
 import { IAppState } from "../interfaces";
+import DropDownPicker from "react-native-dropdown-picker";
 
 export const PositionSelect = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -37,30 +38,65 @@ export const PositionSelect = () => {
 
   const position = useSelector((state: IAppState) => state.position);
 
-  if (isOpen) {
-    return (
-      <ScrollView>
-        <Button title={"Positions: " + position} onPress={toggle} />
-        {optionPosition.map((l, i) => (
-          <ListItem key={i}>
-            <ListItem.Content>
-              <Button title={l.label} onPress={() => handleClick(l.value)} />
-            </ListItem.Content>
-          </ListItem>
-        ))}
-      </ScrollView>
-    );
-  } else {
-    return (
-      <View>
-        <Button title={"Positions: " + position} onPress={toggle} />
-      </View>
-    );
-  }
+  return (
+    <DropDownPicker
+      items={[
+        { value: "", label: "All positions" },
+        { value: "GK", label: "Goalkeeper" },
+        { value: "RB", label: "Right Back" },
+        { value: "CB", label: "Center Back" },
+        { value: "LB", label: "Left Back" },
+        { value: "CDM", label: "Central Defensive Midfielder" },
+        { value: "RM", label: "Right Midfielder" },
+        { value: "CM", label: "Central Midfielder" },
+        { value: "LM", label: "Left Midfielder" },
+        { value: "CAM", label: "Central Attacking Midfielder" },
+        { value: "RW", label: "Right Wing" },
+        { value: "LW", label: "Left Wing" },
+        { value: "CF", label: "Center Forward" },
+        { value: "ST", label: "Striker" },
+      ]}
+      labelStyle={{ color: "black", textAlign: "center" }}
+      selectedLabelStyle={{ color: "white" }}
+      placeholder="Select club"
+      placeholderStyle={{ color: "white" }}
+      arrowColor="white"
+      defaultValue={""}
+      containerStyle={{ height: 40 }}
+      style={{ backgroundColor: "#2089dc", borderColor: "#2089dc" }}
+      itemStyle={{
+        justifyContent: "flex-start",
+      }}
+      dropDownStyle={{ backgroundColor: "#fafafa" }}
+      onChangeItem={(item) => handleClick(item.value)}
+    />
+  );
 };
 
-const styles = StyleSheet.create({
-  button: {
-    marginBottom: "10%",
-  },
-});
+//   if (isOpen) {
+//     return (
+//       <ScrollView>
+//         <Button title={"Positions: " + position} onPress={toggle} />
+//         {optionPosition.map((l, i) => (
+//           <ListItem key={i}>
+//             <ListItem.Content>
+//               <Button title={l.label} onPress={() => handleClick(l.value)} />
+//             </ListItem.Content>
+//           </ListItem>
+//         ))}
+//       </ScrollView>
+//     );
+//   } else {
+//     return (
+//       <View>
+//         <Button title={"Positions: " + position} onPress={toggle} />
+//       </View>
+//     );
+//   }
+// };
+
+// const styles = StyleSheet.create({
+//   button: {
+//     marginBottom: "10%",
+//   },
+// });

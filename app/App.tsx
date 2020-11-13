@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
     width: "100%",
   },
   search: {
-    flex: 2,
+    flex: 5,
     width: "70%",
     marginLeft: "15%",
     marginBottom: "20%",
