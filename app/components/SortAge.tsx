@@ -15,11 +15,6 @@ export const SortAge = () => {
     setIsOpen(!isOpen);
   };
 
-  const sortings: { [id: string]: string } = {
-    "0": "Sort age: No sort",
-    "-1": "Descending",
-    "1": "Ascending",
-  };
   return (
     <View>
       <DropDownPicker

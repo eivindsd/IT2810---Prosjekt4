@@ -159,8 +159,6 @@ export const Scroller = () => {
                     "https://i.pinimg.com/originals/19/1b/6d/191b6d669f008bfaf3950dd3e71ec2ca.jpg",
                 }}
               >
-                {/* <Button onPress={() => changeScore(1)}>Upvote</Button>
-        <Button onPress={() => changeScore(-1)}>Downvote</Button> */}
                 <View style={styles.centeredView}>
                   <View style={styles.modalView}>
                     <Text style={styles.modalText}>{name}</Text>
