@@ -37,15 +37,18 @@ export const Search = () => {
   return (
     <View>
       <Text style={styles.header}> FutHeader</Text>
-      <View>
+      <View style={{ marginBottom: "10%" }}>
         <SearchBar
           placeholder="Search for FUT-players"
           value={name}
           onChangeText={handleChange}
+          style={{ zIndex: 1 }}
         />
       </View>
+      <View style={styles.filter}>
+        <Filter />
+      </View>
 
-      <Filter />
       <Button
         buttonStyle={{ borderRadius: 0 }}
         style={styles.button}
@@ -61,6 +64,7 @@ interface Styles {
   header: TextStyle;
   button: ViewStyle;
   page: ViewStyle;
+  filter: ViewStyle;
 }
 
 const styles = StyleSheet.create<Styles>({
@@ -74,9 +78,12 @@ const styles = StyleSheet.create<Styles>({
   },
 
   button: {
-    marginTop: 10,
+    marginTop: 100,
   },
   page: {
     height: "100%",
+  },
+  filter: {
+    marginBottom: 100,
   },
 });
