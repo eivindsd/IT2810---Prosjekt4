@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ViewStyle, StyleSheet, Platform } from "react-native";
+import { View } from "react-native";
 import { PositionSelect } from "./PositionSelect";
 import { NationSelect } from "./NationSelect";
 import { ClubSelect } from "./ClubSelect";
@@ -11,30 +11,24 @@ export const Filter = () => {
     <View>
       <View
         style={{
-          ...(Platform.OS !== "android" && {
-            zIndex: 11,
-            marginBottom: 15,
-          }),
+          zIndex: 11,
+          marginBottom: 15,
         }}
       >
         <PositionSelect />
       </View>
       <View
         style={{
-          ...(Platform.OS !== "android" && {
-            zIndex: 10,
-            marginBottom: 15,
-          }),
+          zIndex: 10,
+          marginBottom: 15,
         }}
       >
         <NationSelect />
       </View>
       <View
         style={{
-          ...(Platform.OS !== "android" && {
-            zIndex: 9,
-            marginBottom: 15,
-          }),
+          zIndex: 9,
+          marginBottom: 15,
         }}
       >
         <ClubSelect />
