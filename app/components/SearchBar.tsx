@@ -69,21 +69,21 @@ interface Styles {
 
 const styles = StyleSheet.create<Styles>({
   header: {
-    fontSize: 60,
+    fontSize: 50,
     fontStyle: "italic",
     color: "#940000",
     textAlign: "center",
-    marginTop: "50%",
+    marginTop: "30%",
     marginBottom: "5%",
   },
 
   button: {
-    marginTop: 100,
+    marginTop: '30%',
   },
   page: {
     height: "100%",
   },
   filter: {
-    marginBottom: 100,
+    marginBottom: '30%',
   },
 });
