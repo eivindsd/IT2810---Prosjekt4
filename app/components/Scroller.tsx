@@ -14,7 +14,7 @@ import {
   ImageStyle,
 } from "react-native";
 import { Button } from "react-native-elements";
-import images from "../media/images/images";
+import images from "../Media/images/images";
 import { getPlayers } from "../actions/playerActions";
 import axios from "axios";
 import { setModal } from "../actions/modalActions";
