@@ -6,7 +6,7 @@
 
 
 
-# Prosjekt 4 - Gruppe 77
+# Prosjekt 4 - Gruppe 77 - React Native Client
 
 *  [Intro](#intro)
 *  [Innhold og funksjonalitet](#innhold-og-funksjonalitet)
