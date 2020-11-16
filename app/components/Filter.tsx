@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Platform } from "react-native";
 import { PositionSelect } from "./PositionSelect";
 import { NationSelect } from "./NationSelect";
 import { ClubSelect } from "./ClubSelect";
@@ -13,7 +13,9 @@ export const Filter = () => {
     <View>
       <View
         style={{
-          zIndex: 11,
+          ...(Platform.OS !== "android" && {
+            zIndex: 10,
+          }),
           marginBottom: 15,
         }}
       >
@@ -21,7 +23,9 @@ export const Filter = () => {
       </View>
       <View
         style={{
-          zIndex: 10,
+          ...(Platform.OS !== "android" && {
+            zIndex: 9,
+          }),
           marginBottom: 15,
         }}
       >
@@ -29,7 +33,9 @@ export const Filter = () => {
       </View>
       <View
         style={{
-          zIndex: 9,
+          ...(Platform.OS !== "android" && {
+            zIndex: 8,
+          }),
           marginBottom: 15,
         }}
       >
@@ -37,16 +43,19 @@ export const Filter = () => {
       </View>
       <View
         style={{
+          ...(Platform.OS !== "android" && {
+            zIndex: 7,
+          }),
           marginBottom: 15,
-          zIndex: 8,
         }}
       >
         <SortAge />
       </View>
       <View
         style={{
-          marginBottom: 12,
-          zIndex: 7,
+          ...(Platform.OS !== "android" && {
+            zIndex: 6,
+          }),
         }}
       >
         <SortScore />
