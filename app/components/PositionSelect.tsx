@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch } from "react-redux";
 import { setPosition } from "../actions/positionActions";
 import DropDownPicker from "react-native-dropdown-picker";
 
 export const PositionSelect = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
 
+  //set position to chosen position from DropDownPicker
   const handleClick = (pos: string) => {
     dispatch(setPosition(pos));
-    setIsOpen(!isOpen);
   };
 
+  //used DropDownPicker to choose position to filter on
   return (
     <DropDownPicker
       items={[

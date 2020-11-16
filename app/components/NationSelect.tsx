@@ -1,20 +1,18 @@
-import React, { useState } from "react";
-import { View, StyleSheet, TextStyle, ViewStyle } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { View } from "react-native";
+import { useDispatch } from "react-redux";
 import { setNation } from "../actions/nationActions";
-import { IAppState } from "../interfaces";
 import DropDownPicker from "react-native-dropdown-picker";
 
 export const NationSelect = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
 
+  //set nation to chosen nation from DropDownPicker
   const handleClick = (nat: string) => {
-    console.log(nat);
     dispatch(setNation(nat));
-    setIsOpen(!isOpen);
   };
 
+  //used DropDownPicker to choose nation to filter on
   return (
     <View>
       <DropDownPicker

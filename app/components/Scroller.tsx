@@ -40,9 +40,11 @@ export const Scroller = () => {
   const ag = useSelector((state: IAppState) => state.age);
   const scor = useSelector((state: IAppState) => state.score);
   const query = useSelector((state: IAppState) => state.query);
-
+  const pmodal = useSelector((state: IAppState) => state.pmodal);
+  const imgSrc = images[name];
   const limit = 9;
 
+  //method to toggle the modal / show information about the chosen player
   const toggle = (
     playername: string,
     playerage: string,
@@ -95,10 +97,7 @@ export const Scroller = () => {
     getPlayers(query, pos, nat, clu, ag, scor, dispatch, limit, skip);
   }, [query, dispatch, skip, limit]);
 
-  const imgSrc = images[name];
-
-  const pmodal = useSelector((state: IAppState) => state.pmodal);
-
+  //method to exit the resultmodal
   const exit = () => {
     dispatch(setModal(false));
     setSkip(0);
@@ -231,6 +230,7 @@ export const Scroller = () => {
   );
 };
 
+//interfaces to specify styles for the scroller
 interface Styles {
   centeredView: ViewStyle;
   modalView: ViewStyle;
@@ -247,6 +247,7 @@ interface Styles {
   scrollerStyle: ViewStyle;
 }
 
+//stylesheet for the different react native elements in Scroller
 const styles = StyleSheet.create<Styles>({
   centeredView: {
     justifyContent: "center",
