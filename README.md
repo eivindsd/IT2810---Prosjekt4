@@ -61,8 +61,11 @@ Her ligger altså funksjonalitet for å vise spillerne, vise mer info om hver en
 I dette prosjektet måtte vi endre en del på komponentene våre i forhold til prosjekt-4. De største endringene er at alle div-komponenter til 
 View-komponenter og alt som er tekst måtte inn i Text-komponenter. 
 
-I tillegg har vi tatt i bruk en rekke andre react-native komponenter. For filtrering på klubb, nasjon og posisjon har vi brukt DropDownPicker fra 
-"react-native-dropdown-picker" biblioteket. Denne erstatter Select-komponenten vår fra prosjekt-3. Dette er en dropdown-meny med valg, som setter global-state 
+I tillegg har vi tatt i bruk en rekke andre react-native komponenter. Dette ble gjort fordi da slipper vi å implementere en del funksjonalitet, koden blir lettere å lese
+og det ser som regel bedre ut også. 
+
+For filtrering på klubb, nasjon og posisjon har vi brukt DropDownPicker fra "react-native-dropdown-picker" biblioteket. 
+Denne erstatter Select-komponenten vår fra prosjekt-3. Dette er en dropdown-meny med valg, som setter global-state 
 til valget når brukeren velger et alternativ f.eks nation: France. For at disse komponentene ikke skal gli inn i hverandre brukte zIndex for å vise de første øverst.
 
 Vi har også brukt Modal-komponenten fra "react-native" i dette prosjektet. Samme som i prosjekt-3 brukte vi det for å vise hver enkelt spiller, men brukte det her også for å 
@@ -75,8 +78,7 @@ Brukte også SearchBar fra "react-native-elements" for søkefunksjonalitet.
 <br>
 Her kunne vi ikke lenger bruke CSS for styling av komponentene. Vi laget derfor ulike stylesheets for hver komponent og et eget interface for hvert av 
 disse stylesheetsene. Har også brukt noe av de innebygde styling propsene til noen av komponentene, som f.eks buttonStyle på noen knapper og labelStyle
-på labelen til DropDownPicker-komponentene.
-
+på labelen til DropDownPicker-komponentene. Dette gjorde det enklere for oss å style enkelte komponenter, da vi slipper å definere nye styles. 
 
 
 Figuren under viser komponentstrukturen i applikasjonen vår:
