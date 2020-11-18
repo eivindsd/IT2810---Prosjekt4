@@ -2,6 +2,7 @@ type tCharName = {
     [key: string]: string;
   };
   
+  //images for the players in the database
   const images: tCharName = {
     Pelé: "https://futhead.cursecdn.com/static/img/14/players/190043.png",
     "Diego Maradona":

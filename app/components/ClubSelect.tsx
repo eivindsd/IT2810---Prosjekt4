@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch} from "react-redux";
 import { setClub } from "../actions/clubActions";
 import DropDownPicker from "react-native-dropdown-picker";
 
 export const ClubSelect = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
 
+  //set club to chosen club from DropDownPicker
   const handleClick = (clu: string) => {
     dispatch(setClub(clu));
-    setIsOpen(!isOpen);
   };
 
+  //used DropDownPicker to choose club to filter on
   return (
     <DropDownPicker
       items={[

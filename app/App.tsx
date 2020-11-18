@@ -34,6 +34,7 @@ export default function App() {
   );
 }
 
+//stylesheet for the startpage
 const styles = StyleSheet.create({
   container: {
     flex: 1,

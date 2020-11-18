@@ -11,6 +11,7 @@ import {
 import { IAppState, IAction } from "../interfaces";
 import initialState from "../store/initialState";
 
+//sets global state
 export default function playerReducer(
   state: IAppState = initialState,
   action: IAction
